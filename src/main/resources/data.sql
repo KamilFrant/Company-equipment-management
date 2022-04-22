@@ -13,3 +13,14 @@ values (1, 'Kamil', 'Nowak', '89121995912'),
        (12, 'Michał', 'Kobzak', '89032424332'),
        (13, 'Jakub', 'Zelent', '92120396639');
 
+INSERT INTO category(id, name, description)
+values (1, 'Telefon', 'Służbowy telefon'),
+       (2, 'Laptop', 'Firmowy laptop'),
+       (3, 'Komputer', 'Firmowy komputer stacjonarny'),
+       (4, 'Fotel', 'Firmowy fotel'),
+       (5, 'Biurko', 'Firmowe biurko'),
+       (6, 'Mysz', 'Firmowa mysz'),
+       (7, 'Klawiatura', 'Firmowa klawiatura'),
+       (8, 'Samochód', 'Służbowy samochód'),
+       (9, 'Inne', 'Inne');
+
