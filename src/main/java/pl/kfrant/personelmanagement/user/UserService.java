@@ -21,26 +21,26 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    List<UserDto> findAllUsers(){
+    List<UserDto> findAllUsers() {
         return userRepository.findAll()
                 .stream()
                 .map(userMapper::mapToUserDto)
                 .collect(Collectors.toList());
     }
 
-    List<UserDto> findByLastName(String lastName){
+    List<UserDto> findByLastName(String lastName) {
         return userRepository.findByLastNameContainsIgnoreCase(lastName)
                 .stream()
                 .map(userMapper::mapToUserDto)
                 .collect(Collectors.toList());
     }
 
-    Optional<UserDto> findById(Long id){
+    Optional<UserDto> findById(Long id) {
         return userRepository.findById(id)
                 .map(userMapper::mapToUserDto);
     }
 
-    UserDto saveUser(UserDto dto){
+    UserDto saveUser(UserDto dto) {
         Optional<User> userByPesel = userRepository.findByPesel(dto.getPesel());
         userByPesel.ifPresent(user -> {
             throw new PeselExistException();
@@ -49,15 +49,16 @@ public class UserService {
     }
 
 
-    UserDto updateUser(UserDto dto){
+    UserDto updateUser(UserDto dto) {
         Optional<User> userByPesel = userRepository.findByPesel(dto.getPesel());
         userByPesel.ifPresent(user -> {
-            throw new PeselExistException();
+            if (!user.getId().equals(dto.getId()))
+                throw new PeselExistException();
         });
         return mapAndSave(dto);
     }
 
-    private UserDto mapAndSave(UserDto dto){
+    private UserDto mapAndSave(UserDto dto) {
         User userToSave = userMapper.mapToUser(dto);
         User savedUser = userRepository.save(userToSave);
         return userMapper.mapToUserDto(savedUser);

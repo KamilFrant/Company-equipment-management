@@ -21,23 +21,23 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<UserDto>> getAllUsers(@RequestParam(required = false) String lastName){
-        if(lastName!=null){
+    public ResponseEntity<List<UserDto>> getAllUsers(@RequestParam(required = false) String lastName) {
+        if (lastName != null) {
             return ResponseEntity.ok(userService.findByLastName(lastName));
-        }
-        return ResponseEntity.ok(userService.findAllUsers());
+        } else
+            return ResponseEntity.ok(userService.findAllUsers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long id){
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return userService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> saveUser(@RequestBody UserDto dto){
-        if(dto.getId()!=null){
+    @PostMapping("")
+    public ResponseEntity<UserDto> saveUser(@RequestBody UserDto dto) {
+        if (dto.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywanu użytkownik nie może mieć ustawionego ID.");
         }
         UserDto savedUser = userService.saveUser(dto);
@@ -50,9 +50,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto dto){
-        if(!id.equals(dto.getId())){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Aktualizowany użytkownik ma złe ID");
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto dto) {
+        if (!id.equals(dto.getId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany użytkownik ma złe ID");
         }
         UserDto updatedUser = userService.updateUser(dto);
         return ResponseEntity.ok(updatedUser);

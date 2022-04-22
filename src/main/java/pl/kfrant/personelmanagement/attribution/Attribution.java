@@ -1,2 +1,4 @@
-package pl.kfrant.personelmanagement.attribution;public class Attribution {
+package pl.kfrant.personelmanagement.attribution;
+
+public class Attribution {
 }
