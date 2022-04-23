@@ -1,5 +1,7 @@
 package pl.kfrant.personelmanagement.assignment;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import pl.kfrant.personelmanagement.assignment.exception.InvalidAssignmentExcept
 import java.net.URI;
 import java.time.LocalDateTime;
 
+@Api(tags = "Assignments")
 @RestController
 @RequestMapping("/assignments")
 public class AssignmentController {
@@ -22,6 +25,7 @@ public class AssignmentController {
     }
 
     @PostMapping
+    @ApiOperation("Create new assignment")
     public ResponseEntity<AssignmentDto> saveAssignment(@RequestBody AssignmentDto assignmentDto){
         AssignmentDto savedAssignment;
         try {
@@ -38,6 +42,7 @@ public class AssignmentController {
     }
 
     @PostMapping("/{id}/end")
+    @ApiOperation("End of assignment")
     public ResponseEntity<LocalDateTime> endAssignment(@PathVariable Long id){
         LocalDateTime endDate = assignmentService.finishAssignment(id);
         return ResponseEntity.accepted().body(endDate);

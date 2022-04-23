@@ -1,5 +1,7 @@
 package pl.kfrant.personelmanagement.user;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import pl.kfrant.personelmanagement.user.dto.UserDto;
 import java.net.URI;
 import java.util.List;
 
+@Api(tags = "Users")
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -22,6 +25,7 @@ public class UserController {
     }
 
     @GetMapping("")
+    @ApiOperation("Take all users")
     public ResponseEntity<List<UserDto>> getAllUsers(@RequestParam(required = false) String lastName) {
         if (lastName != null) {
             return ResponseEntity.ok(userService.findByLastName(lastName));
@@ -30,6 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Take user by id")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return userService.findById(id)
                 .map(ResponseEntity::ok)
@@ -37,6 +42,7 @@ public class UserController {
     }
 
     @PostMapping("")
+    @ApiOperation("Create new user")
     public ResponseEntity<UserDto> saveUser(@RequestBody UserDto dto) {
         if (dto.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywanu użytkownik nie może mieć ustawionego ID.");
@@ -51,6 +57,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Update user")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto dto) {
         if (!id.equals(dto.getId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany użytkownik ma złe ID");
@@ -60,6 +67,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/assignments")
+    @ApiOperation("Take all assignments for this user")
     public ResponseEntity<List<UserAssignmentDto>> getUserAssignments(@PathVariable Long id){
         return ResponseEntity.ok(userService.getUserAssignments(id));
     }

@@ -1,5 +1,7 @@
 package pl.kfrant.personelmanagement.equipment.item;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +13,7 @@ import pl.kfrant.personelmanagement.equipment.item.dto.ItemDto;
 import java.net.URI;
 import java.util.List;
 
-
+@Api(tags = "Items")
 @RestController
 @RequestMapping("/items")
 public class ItemController {
@@ -23,6 +25,7 @@ public class ItemController {
     }
 
     @GetMapping("")
+    @ApiOperation("Take all items")
     public ResponseEntity<List<ItemDto>> getAllItems(@RequestParam(required = false) String name) {
         if (name != null) {
             return ResponseEntity.ok(itemService.findByName(name));
@@ -31,6 +34,7 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Take item by id")
     public ResponseEntity<ItemDto> getItemById(@PathVariable Long id){
         return itemService.findById(id)
                 .map(ResponseEntity::ok)
@@ -39,6 +43,7 @@ public class ItemController {
     }
 
     @PostMapping("")
+    @ApiOperation("Create new item")
     public ResponseEntity<ItemDto> saveItem(@RequestBody ItemDto dto){
         if(dto.getId()!=null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Zapisywany przedmiot nie może mieć ustawionego ID.");
@@ -53,6 +58,7 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Update item")
     public ResponseEntity<ItemDto> updateItem(@PathVariable Long id,@RequestBody ItemDto dto){
         if(!id.equals(dto.getId())){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"Aktualizowany przedmiot ma złe ID");
@@ -62,6 +68,7 @@ public class ItemController {
     }
 
     @GetMapping("/{id}/assignments")
+    @ApiOperation("Take all assignments for this item")
     public ResponseEntity<List<ItemAssignmentDto>> getItemAssignmets(@PathVariable Long id){
         return ResponseEntity.ok(itemService.getItemAssignment(id));
     }
