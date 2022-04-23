@@ -1,4 +1,4 @@
-# Office management
+# Company management
 
 Company equipment management application.
 
