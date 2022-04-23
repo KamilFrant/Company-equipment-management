@@ -9,7 +9,7 @@ import pl.kfrant.personelmanagement.equipment.item.dto.ItemDto;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/items")

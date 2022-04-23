@@ -2,9 +2,9 @@ package pl.kfrant.personelmanagement.equipment.item;
 
 import org.springframework.stereotype.Service;
 import pl.kfrant.personelmanagement.equipment.item.dto.ItemDto;
+import pl.kfrant.personelmanagement.equipment.item.exception.DuplicateSerialNumberException;
 import pl.kfrant.personelmanagement.equipment.item.mapper.ItemMapper;
 
-import javax.management.openmbean.OpenDataException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
