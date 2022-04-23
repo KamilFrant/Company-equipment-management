@@ -2,10 +2,6 @@
 
 Company equipment management application.
 
-# REST API Documentation
-http://localhost:8080/swagger-ui/
-![3](https://user-images.githubusercontent.com/36209711/164942539-c1d50b1c-960d-4a68-beae-29a940eb2521.PNG)
-
 # Features
 * Displaying employees
 * Adding new employees
@@ -23,6 +19,10 @@ http://localhost:8080/swagger-ui/
 * Add liquibase to create schemas and data
 * Add Spring Security to add logging system
 * Add validators
+
+# REST API Documentation
+http://localhost:8080/swagger-ui/
+![3](https://user-images.githubusercontent.com/36209711/164942539-c1d50b1c-960d-4a68-beae-29a940eb2521.PNG)
 
 # Database - H2
 Database works on `localhost:8080/h2-console` and JDBC URL: `jdbc:h2:mem:test`
