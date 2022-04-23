@@ -45,3 +45,14 @@ values (1, 'Xiaomi 12 Pro 12', 'Xiaomi 12 Pro 12/256 GB Purple', 'XMI12P12X256P'
        (18, 'BMW Seria 3', 'BMW 330i  Limuzyna Hybryda', 'BMW330ILIMHYB', 8),
        (19, 'Logitech C920', 'Kamerka internetowa Logitech C920 Pro Full HD', 'LGC920PFULLHD', 9),
        (20, 'HP Smart Tank 515', 'Drukarka HP Smart Tank 515 WiFi BLE', 'HPSTT515WFBLE', 9);
+
+insert into assignment(id, start, end, item_id, user_id)
+values (1, '2022-04-08 15:25:03', '2022-04-18 14:10:11', 1, 2),
+       (2, '2022-01-09 10:45:52', '2022-03-17 11:01:02', 2, 6),
+       (3, '2019-03-10 07:32:34', '2020-02-11 12:26:12', 3, 8),
+       (4, '2018-11-22 09:15:05', '2019-11-08 07:40:41', 4, 11),
+       (5, '2020-04-13 11:35:32', null, 5, 1),
+       (6, '2021-01-16 15:31:06', null, 6, 10),
+       (7, '2020-08-18 11:56:32', null, 7, 3),
+       (8, '2020-11-09 10:13:12', null, 8, 7),
+       (9, '2019-02-11 09:15:54', null, 9, 9);
