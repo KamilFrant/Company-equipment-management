@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.kfrant.personelmanagement.equipment.item.dto.ItemAssignmentDto;
 import pl.kfrant.personelmanagement.equipment.item.dto.ItemDto;
 
 import java.net.URI;
@@ -58,5 +59,10 @@ public class ItemController {
         }
         ItemDto updatedItem = itemService.updateItem(dto);
         return ResponseEntity.ok(updatedItem);
+    }
+
+    @GetMapping("/{id}/assignments")
+    public ResponseEntity<List<ItemAssignmentDto>> getItemAssignmets(@PathVariable Long id){
+        return ResponseEntity.ok(itemService.getItemAssignment(id));
     }
 }

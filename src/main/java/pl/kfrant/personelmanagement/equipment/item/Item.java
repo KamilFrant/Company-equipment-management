@@ -1,8 +1,11 @@
 package pl.kfrant.personelmanagement.equipment.item;
 
+import pl.kfrant.personelmanagement.assignment.Assignment;
 import pl.kfrant.personelmanagement.equipment.category.Category;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +21,8 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    @OneToMany(mappedBy = "item")
+    private List<Assignment> assignments = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -59,21 +64,26 @@ public class Item {
         this.category = category;
     }
 
+
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return Objects.equals(id, item.id) &&
-                Objects.equals(name, item.name) &&
-                Objects.equals(description, item.description) &&
-                Objects.equals(serialNumber, item.serialNumber) &&
-                Objects.equals(category, item.category);
+        return Objects.equals(id, item.id) && Objects.equals(name, item.name) && Objects.equals(description, item.description) && Objects.equals(serialNumber, item.serialNumber) && Objects.equals(category, item.category) && Objects.equals(assignments, item.assignments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, serialNumber, category);
+        return Objects.hash(id, name, description, serialNumber, category, assignments);
     }
 }
 

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.kfrant.personelmanagement.assignment.dto.AssignmentDto;
+import pl.kfrant.personelmanagement.assignment.exception.InvalidAssignmentException;
 
 import java.net.URI;
 import java.time.LocalDateTime;

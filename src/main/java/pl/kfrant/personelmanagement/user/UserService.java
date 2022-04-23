@@ -1,8 +1,11 @@
 package pl.kfrant.personelmanagement.user;
 
 import org.springframework.stereotype.Service;
+import pl.kfrant.personelmanagement.user.dto.UserAssignmentDto;
 import pl.kfrant.personelmanagement.user.dto.UserDto;
 import pl.kfrant.personelmanagement.user.exception.PeselExistException;
+import pl.kfrant.personelmanagement.user.exception.UserNotFoundException;
+import pl.kfrant.personelmanagement.user.mapper.UserAssignmentMapper;
 import pl.kfrant.personelmanagement.user.mapper.UserMapper;
 
 
@@ -15,10 +18,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final UserAssignmentMapper userAssignmentMapper;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper,UserAssignmentMapper userAssignmentMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.userAssignmentMapper=userAssignmentMapper;
     }
 
     List<UserDto> findAllUsers() {
@@ -62,5 +67,14 @@ public class UserService {
         User userToSave = userMapper.mapToUser(dto);
         User savedUser = userRepository.save(userToSave);
         return userMapper.mapToUserDto(savedUser);
+    }
+
+    public List<UserAssignmentDto> getUserAssignments(Long userId) {
+        return userRepository.findById(userId)
+                .map(User::getAssignments)
+                .orElseThrow(UserNotFoundException::new)
+                .stream()
+                .map(userAssignmentMapper::assignmentToDto)
+                .collect(Collectors.toList());
     }
 }

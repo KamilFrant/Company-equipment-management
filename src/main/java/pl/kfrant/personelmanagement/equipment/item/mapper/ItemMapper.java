@@ -23,7 +23,7 @@ public class ItemMapper {
         item.setName(dto.getName());
         item.setDescription(dto.getDescription());
         item.setSerialNumber(dto.getSerialNumber());
-        Optional<Category> category = categoryRepository.findByName(dto.getName());
+        Optional<Category> category = categoryRepository.findByName(dto.getCategoryName());
         category.ifPresent(item::setCategory);
         return item;
     }

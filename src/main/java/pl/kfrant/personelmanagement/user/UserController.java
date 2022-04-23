@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.kfrant.personelmanagement.user.dto.UserAssignmentDto;
 import pl.kfrant.personelmanagement.user.dto.UserDto;
 
 import java.net.URI;
@@ -56,6 +57,11 @@ public class UserController {
         }
         UserDto updatedUser = userService.updateUser(dto);
         return ResponseEntity.ok(updatedUser);
+    }
+
+    @GetMapping("/{id}/assignments")
+    public ResponseEntity<List<UserAssignmentDto>> getUserAssignments(@PathVariable Long id){
+        return ResponseEntity.ok(userService.getUserAssignments(id));
     }
 
 }

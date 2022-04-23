@@ -2,6 +2,9 @@ package pl.kfrant.personelmanagement.assignment;
 
 import org.springframework.stereotype.Service;
 import pl.kfrant.personelmanagement.assignment.dto.AssignmentDto;
+import pl.kfrant.personelmanagement.assignment.exception.AssignmentAlreadyFinishedException;
+import pl.kfrant.personelmanagement.assignment.exception.AssignmentNotFoundException;
+import pl.kfrant.personelmanagement.assignment.exception.InvalidAssignmentException;
 import pl.kfrant.personelmanagement.assignment.mapper.AssignmentMapper;
 import pl.kfrant.personelmanagement.equipment.item.Item;
 import pl.kfrant.personelmanagement.equipment.item.ItemRepository;
