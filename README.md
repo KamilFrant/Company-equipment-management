@@ -14,6 +14,7 @@ Company equipment management application.
 * Displaying the rental history of an equipment
 * Assigning equipment to a user
 * Returning equipment
+* Searching categories by category and names
 
 #TODO
 * Add liquibase to create schemas and data
