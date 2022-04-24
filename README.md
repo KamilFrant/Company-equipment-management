@@ -16,7 +16,7 @@ Company equipment management application.
 * Returning equipment
 * Searching categories by category and names
 
-#TODO
+## TODO
 * Add liquibase to create schemas and data
 * Add Spring Security to add logging system
 * Add validators
