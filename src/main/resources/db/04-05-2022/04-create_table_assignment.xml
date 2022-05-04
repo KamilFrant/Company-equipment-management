@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="0004-1" author="kamil">
+        <createTable tableName="ASSIGNMENT">
+            <column name="ID" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="START" type="datetime"/>
+            <column name="END" type="datetime"/>
+            <column name="ITEM_ID" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="ASSIGNMENT" baseColumnNames="ITEM_ID"
+                                 constraintName="FK_ASSIGNMENT_ITEM_ID"
+                                 referencedTableName="ITEM"
+                                 referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint baseTableName="ASSIGNMENT" baseColumnNames="USER_ID"
+                                 constraintName="FK_ASSIGNMENT_USER_ID"
+                                 referencedTableName="USER"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+
+</databaseChangeLog>
