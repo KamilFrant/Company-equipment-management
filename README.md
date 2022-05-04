@@ -17,7 +17,6 @@ Company equipment management application.
 * Searching categories by category and names
 
 ## TODO
-* Add liquibase to create schemas and data
 * Add Spring Security to add logging system
 * Add validators
 
@@ -43,3 +42,4 @@ Clone this repo to your desktop. Run applications using Spring Boot. You will th
 * Swagger
 * Maven
 * H2
+* Liquibase
