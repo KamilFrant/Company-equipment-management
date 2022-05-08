@@ -16,10 +16,6 @@ Company equipment management application.
 * Returning equipment
 * Searching categories by category and names
 
-## TODO
-* Add Spring Security to add logging system
-* Add validators
-
 # REST API Documentation
 http://localhost:8080/swagger-ui/
 ![3](https://user-images.githubusercontent.com/36209711/164942539-c1d50b1c-960d-4a68-beae-29a940eb2521.PNG)
